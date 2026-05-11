@@ -21,9 +21,6 @@ ManifestDPIAwareness PerMonitorV2
 !include "FileAssociation.nsh"
 !include "Win\COM.nsh"
 !include "Win\Propkey.nsh"
-!include "StrFunc.nsh"
-${StrCase}
-${StrLoc}
 
 {{#if installer_hooks}}
 !include "{{installer_hooks}}"
@@ -200,9 +197,11 @@ Function PageReinstall
     ReadRegStr $R1 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$1" "Publisher"
     StrCmp "$R0$R1" "${PRODUCTNAME}${MANUFACTURER}" 0 wix_loop
     ReadRegStr $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$1" "UninstallString"
-    ${StrCase} $R1 $R0 "L"
-    ${StrLoc} $R0 $R1 "msiexec" ">"
-    StrCmp $R0 0 0 wix_loop_done
+    StrCpy $R1 $R0 7
+    StrCmp $R1 "MsiExec" wix_found 0
+    StrCmp $R1 "msiexec" wix_found 0
+    StrCmp $R1 "MSIEXEC" wix_found wix_loop_done
+    wix_found:
     StrCpy $WixMode 1
     StrCpy $R6 "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$1"
     Goto compare_version
