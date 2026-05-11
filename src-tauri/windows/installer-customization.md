@@ -27,6 +27,30 @@ Example:
 
 Paths are relative to `src-tauri/`. Keep `template: "windows/installer.nsi"` so Tauri continues to use this script.
 
+## Cross-Compile NSIS From macOS
+
+Tauri can cross-compile Windows NSIS installers from macOS, but MSI installers cannot be created off Windows. Keep `bundle.targets` set to `["nsis"]` in `src-tauri/tauri.conf.json`; using `"all"` includes MSI and will break this workflow.
+
+One-time setup on macOS:
+
+```sh
+brew install nsis llvm
+rustup target add x86_64-pc-windows-msvc
+cargo install --locked cargo-xwin
+```
+
+Ensure Homebrew LLVM is on `PATH`; on Apple Silicon this is usually `/opt/homebrew/opt/llvm/bin`.
+
+Build the Windows NSIS installer:
+
+```sh
+cargo tauri build --runner cargo-xwin --target x86_64-pc-windows-msvc
+```
+
+The installer is written to `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/` when running from `src-tauri/`, or `target/x86_64-pc-windows-msvc/release/bundle/nsis/` relative to the Tauri project root.
+
+Use this for fast unsigned test builds. Signing cross-compiled Windows installers requires an external signing tool.
+
 ## Change The Background Image
 
 The easiest background-style change is the left-side image shown on the welcome and finish pages.
