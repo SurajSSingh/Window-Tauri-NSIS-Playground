@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "windows-tauri-nsis-playground",
+  "productName": "NSIS Playground Test Installer",
   "version": "0.1.0",
   "identifier": "com.secondary.windows-tauri-nsis-playground",
   "build": {
@@ -22,6 +22,7 @@
   "bundle": {
     "active": true,
     "targets": ["nsis"],
+    "publisher": "Secondary Test Publisher",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -31,7 +32,10 @@
     ],
     "windows": {
       "nsis": {
-        "template": "windows/installer.nsi"
+        "template": "windows/installer.nsi",
+        "installerIcon": "icons/icon.ico",
+        "sidebarImage": "windows/sidebar.bmp",
+        "headerImage": "windows/header.bmp"
       }
     }
   }

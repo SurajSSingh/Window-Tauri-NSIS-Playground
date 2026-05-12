@@ -392,6 +392,8 @@ Var AppStartMenuFolder
 !insertmacro MUI_PAGE_STARTMENU Application $AppStartMenuFolder
 
 ; 7. Installation page
+!define MUI_INSTFILESPAGE_COLORS "FFFFFF 1F2937"
+!define MUI_INSTFILESPAGE_PROGRESSBAR smooth
 !insertmacro MUI_PAGE_INSTFILES
 
 ; 8. Finish page
