@@ -126,6 +126,7 @@ VIAddVersionKey "ProductVersion" "${VERSION}"
 ; Installer sidebar image
 !if "${SIDEBARIMAGE}" != ""
   !define MUI_WELCOMEFINISHPAGE_BITMAP "${SIDEBARIMAGE}"
+  !define MUI_WELCOMEFINISHPAGE_BITMAP_STRETCH FitControl
 !endif
 
 ; Enable header images for installer and uninstaller pages when either image is configured.
@@ -138,11 +139,13 @@ VIAddVersionKey "ProductVersion" "${VERSION}"
 ; Installer header image
 !if "${HEADERIMAGE}" != ""
   !define MUI_HEADERIMAGE_BITMAP "${HEADERIMAGE}"
+  !define MUI_HEADERIMAGE_BITMAP_STRETCH FitControl
 !endif
 
 ; Uninstaller header image
 !if "${UNINSTALLERHEADERIMAGE}" != ""
   !define MUI_HEADERIMAGE_UNBITMAP "${UNINSTALLERHEADERIMAGE}"
+  !define MUI_HEADERIMAGE_UNBITMAP_STRETCH FitControl
 !endif
 
 ; Uninstaller icon

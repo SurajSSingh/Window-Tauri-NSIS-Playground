@@ -76,7 +76,8 @@ Recommended image format:
 
 - Use `.bmp` for the most reliable NSIS compatibility.
 - A common Modern UI sidebar size is `164x314` pixels.
-- If the image appears stretched or cropped, resize the bitmap instead of changing NSIS layout code.
+- The template sets `MUI_WELCOMEFINISHPAGE_BITMAP_STRETCH` to `FitControl`, so larger same-ratio bitmaps are scaled into the stock sidebar area instead of occupying more layout space.
+- For denser artwork at the same displayed size, use a higher-resolution bitmap with the same aspect ratio as `164x314`, such as `328x628`.
 
 ## Change The Header Image
 
@@ -102,6 +103,8 @@ Recommended image format:
 
 - Use `.bmp`.
 - A common Modern UI header size is `150x57` pixels.
+- The template sets header bitmap stretch mode to `FitControl`, so larger same-ratio bitmaps are scaled into the stock header area instead of occupying more layout space.
+- For denser artwork at the same displayed size, use a higher-resolution bitmap with the same aspect ratio as `150x57`, such as `300x114`.
 - Keep important text or logos away from the edges.
 
 ## Change The Installer Icon
